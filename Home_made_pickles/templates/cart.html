@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Shopping Cart</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#fff5e6;
+}
+
+header{
+background:#8B0000;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+nav{
+background:#333;
+padding:10px;
+text-align:center;
+}
+
+nav a{
+color:white;
+margin:15px;
+text-decoration:none;
+font-size:18px;
+}
+
+nav a:hover{
+color:yellow;
+}
+
+.container{
+padding:40px;
+text-align:center;
+}
+
+table{
+width:80%;
+margin:auto;
+border-collapse:collapse;
+background:white;
+}
+
+th, td{
+padding:15px;
+border:1px solid #ccc;
+}
+
+th{
+background:#ff6600;
+color:white;
+}
+
+button{
+padding:10px 20px;
+background:#ff6600;
+border:none;
+color:white;
+border-radius:5px;
+cursor:pointer;
+margin:10px;
+}
+
+button:hover{
+background:#ff3300;
+}
+
+.checkout{
+margin-top:30px;
+}
+
+.empty{
+font-size:22px;
+color:red;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>Your Cart</h1>
+</header>
+
+<nav>
+
+<a href="/">Home</a>
+<a href="/veg_pickles">Veg Pickles</a>
+<a href="/non_veg_pickles">Non Veg Pickles</a>
+<a href="/snacks">Snacks</a>
+<a href="/cart">Cart</a>
+
+</nav>
+
+<div class="container">
+
+<h2>Items in Your Cart</h2>
+
+<table id="cartTable">
+
+<tr>
+<th>Product</th>
+<th>Price</th>
+<th>Quantity</th>
+<th>Total</th>
+</tr>
+
+</table>
+
+<div class="checkout">
+
+<h3 id="totalAmount"></h3>
+
+<button onclick="clearCart()">Clear Cart</button>
+
+<a href="/checkout">
+<button onclick="return checkCart()">Proceed to Checkout</button>
+</a>
+
+</div>
+
+<p id="emptyMsg" class="empty"></p>
+
+</div>
+
+<script>
+
+function loadCart(){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let table = document.getElementById("cartTable");
+
+let total = 0;
+
+if(cart.length === 0){
+
+document.getElementById("emptyMsg").innerHTML = "Your cart is empty";
+
+document.getElementById("totalAmount").innerHTML = "";
+
+return;
+
+}
+
+cart.forEach(item => {
+
+let row = table.insertRow();
+
+row.insertCell(0).innerHTML = item.name;
+
+row.insertCell(1).innerHTML = "₹" + item.price;
+
+row.insertCell(2).innerHTML = item.qty;
+
+let itemTotal = item.price * item.qty;
+
+row.insertCell(3).innerHTML = "₹" + itemTotal;
+
+total += itemTotal;
+
+});
+
+document.getElementById("totalAmount").innerHTML = "Total Amount : ₹" + total;
+
+}
+
+function clearCart(){
+
+localStorage.removeItem("cart");
+
+location.reload();
+
+}
+
+function checkCart(){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+if(cart.length === 0){
+
+alert("Cart is empty! Add items before checkout.");
+
+return false;
+
+}
+
+return true;
+
+}
+
+loadCart();
+
+</script>
+
+</body>
+</html>

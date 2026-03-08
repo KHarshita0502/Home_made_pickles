@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Veg Pickles</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#fff8f0;
+}
+
+header{
+background:#8B0000;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+nav{
+background:#333;
+padding:10px;
+text-align:center;
+}
+
+nav a{
+color:white;
+margin:15px;
+text-decoration:none;
+font-size:18px;
+}
+
+nav a:hover{
+color:yellow;
+}
+
+.container{
+padding:40px;
+text-align:center;
+}
+
+.product{
+display:inline-block;
+background:white;
+margin:20px;
+padding:20px;
+width:250px;
+border-radius:10px;
+box-shadow:0px 0px 10px gray;
+}
+
+.product img{
+width:100%;
+height:180px;
+border-radius:10px;
+}
+
+button{
+background:#ff6600;
+color:white;
+border:none;
+padding:10px;
+margin-top:10px;
+cursor:pointer;
+border-radius:5px;
+}
+
+button:hover{
+background:#ff3300;
+}
+
+</style>
+
+<script>
+
+function addToCart(name,price){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let item = cart.find(p => p.name === name);
+
+if(item){
+item.qty += 1;
+}else{
+cart.push({
+name:name,
+price:price,
+qty:1
+});
+}
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+alert(name + " added to cart");
+
+}
+
+</script>
+
+</head>
+
+<body>
+
+<header>
+<h1>Veg Pickles</h1>
+</header>
+
+<nav>
+<a href="/">Home</a>
+<a href="/veg_pickles">Veg Pickles</a>
+<a href="/non_veg_pickles">Non Veg Pickles</a>
+<a href="/snacks">Snacks</a>
+<a href="/cart">Cart</a>
+</nav>
+
+<div class="container">
+
+<h2>Traditional Veg Pickles</h2>
+
+<div class="product">
+<img src="/static/images/mango_pickle.jpg">
+<h3>Mango Pickle</h3>
+<p>Price: ₹250</p>
+<button onclick="addToCart('Mango Pickle',250)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="/static/images/lemon_pickle.jpg">
+<h3>Lemon Pickle</h3>
+<p>Price: ₹200</p>
+<button onclick="addToCart('Lemon Pickle',200)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="/static/images/garlic_pickle.jpg">
+<h3>Garlic Pickle</h3>
+<p>Price: ₹220</p>
+<button onclick="addToCart('Garlic Pickle',220)">Add to Cart</button>
+</div>
+
+<div class="product">
+<img src="/static/images/mixed_pickle.jpg">
+<h3>Mixed Pickle</h3>
+<p>Price: ₹240</p>
+<button onclick="addToCart('Mixed Pickle',240)">Add to Cart</button>
+</div>
+
+</div>
+
+</body>
+</html>

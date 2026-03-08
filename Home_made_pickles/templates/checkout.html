@@ -1,0 +1,55 @@
+<!DOCTYPE html><html>
+<head><title>Checkout</title><style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#fff5e6;
+}
+
+header{
+background:#8B0000;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+.container{
+width:400px;
+background:white;
+padding:30px;
+margin:60px auto;
+border-radius:10px;
+box-shadow:0px 0px 10px gray;
+text-align:center;
+}
+
+input, textarea{
+width:100%;
+padding:10px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#ff6600;
+color:white;
+border:none;
+border-radius:5px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#ff3300;
+}
+
+</style></head><body><header>
+<h1>Checkout</h1>
+</header><div class="container"><h2>Delivery Details</h2><form method="POST"><input type="text" name="name" placeholder="Enter Full Name" required><textarea name="address" placeholder="Enter Delivery Address" required></textarea><input type="text" name="phone" placeholder="Enter Phone Number" required><button type="submit">Place Order</button>
+
+</form></div></body>
+</html>
